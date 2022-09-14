@@ -16,29 +16,30 @@ const SingleCard = (props) => {
 
 
     // localStorage.setItem(props.game.title, JSON.stringify(data));
-    useEffect(() => {
-        const data = localStorage.getItem(MyVote)
-        if (data) {
-            setData(JSON.parse(data))
-            console.log(data)
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     const data = localStorage.getItem(props.game.title)
+    //     if (data) {
+    //         setData(JSON.parse(data))
+            
+    //     }
+    // }, []);
 
     useEffect(() => {
         localStorage.setItem(props.game.title, JSON.stringify(data))
     })
+ 
 
+    console.log(data);
 
     const handleSubmit = (event) => {
 
         event.preventDefault();
-        console.log(event);
+
     }
 
 
     return (
-        <>
-
+        <>     
             <Card className='mb-3 mt-5 --card' onSubmit={handleSubmit}
                 type="submit"
                 value={data}
@@ -58,7 +59,7 @@ const SingleCard = (props) => {
                     <Button className='btn btn-dark' type="submit" value={data} onClick={(e) => setData(e.target.value)} >Salva</Button>
                 </Card.Body>
             </Card >
-
+      
         </>
     )
 
