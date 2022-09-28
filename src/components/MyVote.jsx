@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 
 
 
@@ -6,15 +6,17 @@ import { Form, Button } from 'react-bootstrap'
 const MyVote = (props) => {
 
 
-   
+
 
     return (
 
         <>
             <Form.Group
                 onSubmit={props.hendelSubmit}
+
             >
-                <Form.Select aria-label="Default select example"
+                <Form.Select
+                    aria-label="Default select example"
                     as='select'
                     value={props.myVoto}
                     onChange={props.handleChange}
@@ -27,10 +29,10 @@ const MyVote = (props) => {
                 </Form.Select>
 
                 <Form.Label>Vota il tuo gioco:</Form.Label>
-                <Button
+                <input
                     className='btn btn-dark'
                     type="submit"
-                >Salva</Button>
+                    value={"salva"} />
             </Form.Group>
 
         </>

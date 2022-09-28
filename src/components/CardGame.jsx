@@ -1,57 +1,72 @@
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import { useState,useEffect } from 'react'
-import SingleCard from "./SingleCard";
-import MyVote from './MyVote';
+import { Container, Row } from 'react-bootstrap';
+import { useState, useEffect } from 'react'
+
+import GameList from './GameList';
+
 
 
 // struttura portatnte dove andiamo a mappare i giochi così che possiamo avevre una struttura a card a ordinata e responsive per la nostra app
 
-const CardGame = (props) => {
-// gestisce lo stato
-    const [myVoto, setMyVoto] = useState("");
+const CardGame = () => {
+    // gestisce lo stato
+    const [games, setGames] = useState([]);
 
 
     useEffect(() => {
-    localStorage.setItem(props.games.title, JSON.stringify())
-    })
+        console.log("io funziono");
+        getGames()
+    }, [])
 
-// seleziona il voto
-    const handleChange = (event) => {
-        setMyVoto(event.target.value)
+    // cambio di strada ho fatto una fetch perche è più giusto anche in visione di usare il localStorage
+    const getGames = async () => {
+        try {
+            let resp = await fetch('https://free-to-play-games-database.p.rapidapi.com/api/games',
+                {
+                    method: 'GET',
+                    headers: {
+                        'X-RapidAPI-Key': 'd59bfd6a16msh4e54974a66e38ccp1da046jsnd4a852d2d54f',
+                        'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+                    }
+                    // ricordati di ricodare no ricordati di iscriverti per chiedere le chiavi se no non funziona nada
+                }
+            )
+            if (resp.ok) {
+                let fetchedGame = await resp.json()
+                setGames(fetchedGame)
+            } else {
+                console.log('error');
+            }
+        } catch (error) {
+            console.log(error, "sono in catch");
+        }
     }
-    // salva il voto (in teoria)
-    const hendelSubmit = (e) => {
-        e.preventDefault()
 
-    }
+    // // seleziona il voto
+    // const handleChange = (e) => {
+    //     setMyVoto(e.target.value)
+    // }
+    // // salva il voto (in teoria)
+    // const hendelSubmit = (e) => {
+    //     e.preventDefault()
 
-    console.log(myVoto);
+    // }
+
+    console.log(games);
 
 
     return (
         <>
-            <Container >
-                <Row className="justify-content-space-between">
+            <Container className='d-flex' >
+                <Row className="m-auto">
+                    
 
-                    {props.games.map((g) => (
+                        <GameList
+                            games={games}
+                        />                      
+                        
 
-                        <Col xs={12} sm={6} md={4} xl={3} key={g.id}>
-                            <Card className='mb-3 mt-5 --card'>
 
-                                <SingleCard
-                                    game={g}
-                                />
-                                <MyVote
-                                    game={g}
-                                    onSubmit={hendelSubmit}
-                                    onChange={handleChange}
-                                    impostaVoto={setMyVoto}
-                                />
-                            </Card>
-
-                        </Col>
-                    ))
-                    }
+                   
                 </Row>
 
             </Container>
@@ -59,15 +74,11 @@ const CardGame = (props) => {
     )
 
 
-
-
-
-
-
 }
 
 
 export default CardGame
+
 
 
 
