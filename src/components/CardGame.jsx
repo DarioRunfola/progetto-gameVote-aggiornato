@@ -1,7 +1,7 @@
 import { Container, Row } from 'react-bootstrap';
 import { useState, useEffect } from 'react'
-
 import GameList from './GameList';
+
 
 
 
@@ -18,6 +18,8 @@ const CardGame = () => {
     }, [])
 
     // cambio di strada ho fatto una fetch perche è più giusto anche in visione di usare il localStorage
+
+   
     const getGames = async () => {
         try {
             let resp = await fetch('https://free-to-play-games-database.p.rapidapi.com/api/games',
@@ -27,7 +29,7 @@ const CardGame = () => {
                         'X-RapidAPI-Key': 'd59bfd6a16msh4e54974a66e38ccp1da046jsnd4a852d2d54f',
                         'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
                     }
-                    // ricordati di ricodare no ricordati di iscriverti per chiedere le chiavi se no non funziona nada
+                    // ricordati di ricodare... no ricordati di iscriverti per chiedere le chiavi se no non funziona nada
                 }
             )
             if (resp.ok) {
@@ -56,17 +58,12 @@ const CardGame = () => {
 
     return (
         <>
-            <Container className='d-flex' >
+            <Container >
                 <Row className="m-auto">
                     
-
                         <GameList
                             games={games}
-                        />                      
-                        
-
-
-                   
+                        />                        
                 </Row>
 
             </Container>
