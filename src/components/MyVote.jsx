@@ -1,25 +1,30 @@
-import { Form } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
+import { useState } from 'react'
 
 
 
 
-const MyVote = (props) => {
+const MyVote = () => {
 
+    const [myVoto, setMyVoto] = useState("")
 
-
-
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();      
+    // }
+    console.log("MyVote funziona");
     return (
 
         <>
             <Form.Group
-                onSubmit={props.hendelSubmit}
+            // onSubmit={handleSubmit}
 
             >
                 <Form.Select
                     aria-label="Default select example"
                     as='select'
-                    value={props.myVoto}
-                    onChange={props.handleChange}
+                    className='p-1 mb-3'
+                    value={myVoto}
+                    onChange={(e) => setMyVoto(e.target.value)}
                 >
                     <option value="1">One</option>
                     <option value="2">Two</option>
@@ -28,11 +33,12 @@ const MyVote = (props) => {
                     <option value="5">Five</option>
                 </Form.Select>
 
-                <Form.Label>Vota il tuo gioco:</Form.Label>
-                <input
-                    className='btn btn-dark'
+                <Form.Label className='h4'>Vota il tuo gioco: </Form.Label>
+                <Button
+                    className='btn btn-primary p-1'
                     type="submit"
-                    value={"salva"} />
+                >Salva</Button>
+
             </Form.Group>
 
         </>

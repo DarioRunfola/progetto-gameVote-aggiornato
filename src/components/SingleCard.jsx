@@ -1,4 +1,7 @@
 import { Card } from 'react-bootstrap'
+import MyVote from './MyVote';
+import { useEffect } from 'react';
+
 
 
 
@@ -6,6 +9,13 @@ import { Card } from 'react-bootstrap'
 
 
 const SingleCard = ({ game }) => {
+
+
+    useEffect(() => {
+        console.log("singleCard funziona");
+        localStorage.setItem(game.title,JSON.stringify({MyVote}) );
+    });
+
 
     return (
         <>

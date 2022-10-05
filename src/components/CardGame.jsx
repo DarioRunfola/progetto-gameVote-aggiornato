@@ -15,11 +15,15 @@ const CardGame = () => {
     useEffect(() => {
         console.log("io funziono");
         getGames()
+
     }, [])
+
+  
+
 
     // cambio di strada ho fatto una fetch perche è più giusto anche in visione di usare il localStorage
 
-   
+
     const getGames = async () => {
         try {
             let resp = await fetch('https://free-to-play-games-database.p.rapidapi.com/api/games',
@@ -32,9 +36,12 @@ const CardGame = () => {
                     // ricordati di ricodare... no ricordati di iscriverti per chiedere le chiavi se no non funziona nada
                 }
             )
+
             if (resp.ok) {
                 let fetchedGame = await resp.json()
                 setGames(fetchedGame)
+                
+                
             } else {
                 console.log('error');
             }
@@ -43,15 +50,7 @@ const CardGame = () => {
         }
     }
 
-    // // seleziona il voto
-    // const handleChange = (e) => {
-    //     setMyVoto(e.target.value)
-    // }
-    // // salva il voto (in teoria)
-    // const hendelSubmit = (e) => {
-    //     e.preventDefault()
 
-    // }
 
     console.log(games);
 
@@ -60,10 +59,10 @@ const CardGame = () => {
         <>
             <Container >
                 <Row className="m-auto">
-                    
-                        <GameList
-                            games={games}
-                        />                        
+
+                    <GameList
+                        games={games}
+                    />
                 </Row>
 
             </Container>

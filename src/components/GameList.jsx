@@ -6,7 +6,16 @@ import MyVote from './MyVote';
 
 
 
-const GameList = ({ games }) => (
+
+
+const GameList = ({ games }) => {
+
+
+  
+
+
+    return (
+
     <>
         {
             games.map((game) => (
@@ -14,6 +23,7 @@ const GameList = ({ games }) => (
                     <Card className="mb-3 mt-5 --card">
                         <SingleCard
                             game={game}
+                            
                         />
                         <Card.Footer>
                             <MyVote game={game} />
@@ -25,6 +35,10 @@ const GameList = ({ games }) => (
         }
     </>
 )
+}
+
+   
+
 
 
 
